@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up form</title>
+    <link rel="stylesheet" href="./css/sign-up-form.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="left">
+        <img src="./css/img/halie-west-25xggax4bSA-unsplash.jpg" alt="">
+
+        
+            <div class="logo-caintainer">
+                <img src="./css/img/odin-lined.png" alt="head of odin">
+                <p>odin</p>
+            </div>
+            <p>Photo by <a href="https://unsplash.com/@haliewestphoto" target="_Blank">Halie West</a> on <a href="https://unsplash.com/photos/25xggax4bSA" target="_Blank">Unplash</a>.</p>
+       
+       
+    </div>
+    
+    <div class="right">
+        <p>This is not a real online serice! You know you need something like this to help realize your deepest dreams. <br>Sign up <span class="italic">now</span> to get started.</p>
+        
+        <p>You <span class="italic">know</span>  you want to.</p>
+
+        <form action="#" method="post" id="form">
+            <div id="div-container">
+            <Legend>Let's do this!</Legend>
+            
+            <div>
+                <label for="firstName">FIRST NAME</label>
+                <input type="text" name="firstName" id="firstName">
+            </div>
+            <div>
+                <label for="lastName">LAST NAME</label>
+                <input type="text" name="lastName" id="lastName">
+            </div>
+            <div>
+                <label for="email">EMAIL</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div>
+                <label for="phoneNumber">PHONE NUMBER</label>
+                <input type="text" name="" id="">
+            </div>
+            <div>
+                <label for="password">PASSWORD</label>
+                <input type="password" name="password" id="password" class="error">
+                <span id="message">*Passwords do not match</span>
+            </div>
+            
+            <div>
+                <label for="pswConfirm">CONFIRM PASSWORD</label>
+                <input type="password" name="passwordConfirm" id="pswConfirm" class="error">
+            </div>
+            </div>
+        </form>
+
+        <button type="submit" form="form">Create account</button>       <!-- Added the form attribute so the button can sit outside the form, but still submit it-->
+        
+        <p>Already have an account? <a href="#" target="_Blank" >Log in.</a> </p>
+    </div>
+
+    <script>
+        let password = document.getElementById('password');
+        let confirmPassword = document.getElementById('pswConfirm');
+        let message = document.getElementById('message');
+        let form = document.querySelector('form');
+
+        //Functions
+        const checkPswd = () => {
+           
+            if(password.value === confirmPassword.value ){          //Clears the innertext of the span and error classes when passwords match
+            message.innerText = "";
+            password.classList.remove('error');
+            confirmPassword.classList.remove('error');
+            }else{
+                reset();                                             //Resets the innertext and classes when passwords don't match anymore
+            }
+        }
+
+      
+        const reset = () =>{                                        //resets message and error class
+            message.innerText = '*Passwords do not match';
+            password.classList.add('error');
+            confirmPassword.classList.add('error');
+        }
+
+        //Event handlers
+        password.addEventListener('keyup', checkPswd);
+
+        confirmPassword.addEventListener('keyup', checkPswd);
+
+        form.addEventListener('submit', (e) =>{                     //Prevents the form from submitting when passwords don't match or when no password is entered
+            if(message.innerText === '*Passwords do not match' || password.value == ''){
+               e.preventDefault();
+            }
+        })
+
+    </script>
+</body>
+</html>
